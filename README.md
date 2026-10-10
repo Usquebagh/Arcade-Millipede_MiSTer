@@ -1,63 +1,53 @@
-# Centipede
+# Millipede (Arcade, 1982) for MiSTer FPGA
 
-FPGA implementation by lisper of [Centipede](https://github.com/lisper/arcade-centipede "Centipede") arcade game 
-Port to MiSTer by Alan Steremberg
+An FPGA implementation of Atari's **Millipede** for the
+[MiSTer FPGA](https://github.com/MiSTer-devel/Main_MiSTer/wiki) platform, built from Atari's
+schematic package SP-217 (game PCB 038874).
 
-# Controls
-## Keyboard
-```
-   F1          : Coin + Start 1P
-   F2          : Coin + Start 2P
-   LEFT,RIGHT,UP,DOWN  arrows : Steering
-   Space,Ctrl  : Fire
+> **Early build.** Feedback and bug reports are welcome via
+> [Issues](https://github.com/Usquebagh/Arcade-Millipede_MiSTer/issues).
 
-   MAME/IPAC/JPAC Style Keyboard inputs:
-     5           : Coin 1
-     6           : Coin 2
-     1           : Start 1 Player
-     2           : Start 2 Players
-     R,F,D,G     : Player 2 Movements
-     A           : Player 2 Fire
-   
-```
-## Mouse/Trackball
-- Use the 'Mouse/Trackball Speed' OSD option to achieve a comfortable speed for your device
+## Original Hardware
 
+| Subsystem | Original Hardware | FPGA Implementation |
+|---|---|---|
+| **CPU** | MOS 6502 @ 1.512 MHz (stretched on playfield RAM accesses) | Arlet Ottens' verilog-6502 |
+| **Sound** | 2 x Atari POKEY @ 1.512 MHz, current-to-voltage output stage | POKEY by Mark Watson; output stage modelled from the schematic |
+| **Video** | 32 x 30 playfield, 16 motion objects per line, 32-entry colour RAM | `rtl/millipede.v`, from the schematics |
+| **Display** | 256 x 240, vertical (ROT270), 59.88 Hz | Rotated with the MiSTer framebuffer |
+| **Controls** | Trak-Ball and one button (cocktail: one per player) | Mouse as Trak-Ball, or joystick (the game reads a joystick port) |
+| **High scores** | ER2055 EAROM | Saved to the SD card |
 
-# Hiscore save/load
+Notes on the hardware are in [docs/hardware.md](docs/hardware.md).
 
-Save and load of the top 3 hiscores is supported on this core.
+## Controls
 
-Warning: If any DIP settings are changed then your high score will reset.
+| Input | Function |
+|---|---|
+| **Mouse** | Trak-Ball (speed in the OSD) |
+| **D-Pad** | Joystick |
+| **A** / left mouse button | Fire |
+| **Start** | Start 1 player |
+| **Select** | Coin |
 
-To save your hiscores manually, press the 'Save Settings' option in the OSD.  Hiscores will be automatically loaded when the core is started.
+## OSD options
 
-To enable automatic saving of hiscores, turn on the 'Autosave Hiscores' option, press the 'Save Settings' option in the OSD, and reload the core.  Hiscores will then be automatically saved (if they have changed) any time the OSD is opened.
+- **Cabinet**: Upright or Cocktail. In cocktail mode the picture turns for player 2; the core
+  rotates the other way so it stays upright on one screen.
+- **Advanced → Colours**: *Board* uses levels worked out from the colour output resistors;
+  *MAME* uses MAME's weights (MAME's greens are darker).
+- **Advanced → Audio Output**: *Board* models the POKEY output stage (non-linear POKEY volume
+  steps, the C63/R153 low-pass and the coupling high-pass); *MAME* is MAME's linear mix.
+- **DIP switches** from the MRA, as in MAME.
 
-Hiscore data is stored in /media/fat/config/nvram/ as ```<mra filename>.nvm```
+## ROMs
 
-# Known Problems
+ROMs are not included. Use the MRA files in `releases/` with the MAME `milliped.zip` set
+(`millipdd` for the Dux hack).
 
-Not sure the colors are quite right.
- 
-# ROMs
-```
-                                *** Attention ***
+## Credits
 
-ROMs are not included. In order to use this arcade, you need to provide the
-correct ROMs.
-
-To simplify the process .mra files are provided in the releases folder, that
-specifies the required ROMs with checksums. The ROMs .zip filename refers to the
-corresponding file of the M.A.M.E. project.
-
-Please refer to https://github.com/MiSTer-devel/Main_MiSTer/wiki/Arcade-Roms for
-information on how to setup and use the environment.
-
-Quickreference for folders and file placement:
-
-/_Arcade/<game name>.mra
-/_Arcade/cores/<game rbf>.rbf
-/_Arcade/mame/<mame rom>.zip
-/_Arcade/hbmame/<hbmame rom>.zip
-
+- Based on the MiSTer Centipede core (lisper's Centipede FPGA implementation, MiSTer port by
+  Alan Steremberg), from which the POKEY, PLL, high-score, pause and trackball modules come.
+- POKEY: Mark Watson. 6502: Arlet Ottens. High-score and pause modules: Jim Gregory.
+- MAME (`atari/centiped.cpp`) was used as a reference for comparison.
