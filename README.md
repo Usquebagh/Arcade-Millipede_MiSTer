@@ -5,11 +5,11 @@ An FPGA implementation of Atari's **Millipede** arcade game for the [MiSTer FPGA
 The sequel to Centipede: a Trak-Ball, a garden of mushrooms and a millipede winding down the screen, with bees, earwigs, dragonflies, inchworms, beetles and spiders joining in. DDT bombs take out everything nearby.
 
 <p align="center">
-  <img src="docs/flyer.jpg" alt="Millipede operation manual cover" height="380">
+  <img src="docs/cabinet.png" alt="Millipede arcade cabinet" height="380">
   <img src="docs/title.png" alt="Millipede running on MiSTer" height="380">
 </p>
 
-> **Early build.** Tested on MiSTer over HDMI with a mouse as the Trak-Ball; the analog (CRT) output has not been tried yet. Feedback and bug reports are welcome via [Issues](https://github.com/Usquebagh/Arcade-Millipede_MiSTer/issues).
+> **Early build.** Tested on MiSTer over HDMI with an arcade trackball; the analog (CRT) output has not been tried yet. Feedback and bug reports are welcome via [Issues](https://github.com/Usquebagh/Arcade-Millipede_MiSTer/issues).
 
 ---
 
@@ -21,7 +21,7 @@ The sequel to Centipede: a Trak-Ball, a garden of mushrooms and a millipede wind
 | **Video** | 32 × 30 character playfield, 16 motion objects per line through a line buffer, 32-entry colour RAM | `millipede.v`, from the SP-217 schematics |
 | **Sound** | 2 × Atari POKEY @ 1.512 MHz into a current-to-voltage output stage | Mark Watson's POKEY + a model of the board's output stage |
 | **Display** | 256 × 240, vertical (ROT270), 59.88 Hz | Rotated with the MiSTer framebuffer |
-| **Controls** | Trak-Ball and one fire button per player | Mouse, or joystick (the game also reads a joystick port) |
+| **Controls** | Trak-Ball and one fire button per player | USB trackball or mouse, or joystick (the game also reads a joystick port) |
 | **High scores** | ER2055 EAROM | Saved to the SD card via MiSTer NVRAM |
 
 Notes on the hardware and design decisions are in [docs/hardware.md](docs/hardware.md).
@@ -32,9 +32,9 @@ Notes on the hardware and design decisions are in [docs/hardware.md](docs/hardwa
 
 | Input | Function |
 |---|---|
-| **Mouse** | Trak-Ball (speed under *Trackball Speed* in the OSD) |
+| **Trackball** (USB arcade trackball or mouse) | Trak-Ball (speed under *Trackball Speed* in the OSD) |
 | **D-Pad** | Joystick |
-| **A** / left mouse button | Fire |
+| **A** / trackball button | Fire |
 | **Start** | Start 1 player |
 | **Select** | Coin |
 | **L** | Pause |
