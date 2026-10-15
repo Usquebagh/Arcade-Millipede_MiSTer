@@ -1,6 +1,6 @@
 #!/bin/bash
 # Build the MiSTer core with Quartus Lite 17.0.2 in Docker.
-# Output: output_files/Arcade-Millipede.rbf (copied to releases/Arcade-Millipede_<date>.rbf)
+# Output: output_files/Arcade-Millipede.rbf (copied to releases/Millipede_<date>.rbf)
 set -e
 cd "$(dirname "$0")"
 IMAGE=theypsilon/quartus-lite-c5:17.0.2
