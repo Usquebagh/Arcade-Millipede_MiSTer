@@ -57,6 +57,8 @@ Notes on the hardware and design decisions are in [docs/hardware.md](docs/hardwa
 
 ROMs are **not** included. Use the `.mra` files in [releases/](releases/) with the MAME `milliped.zip` set (the Dux hack also uses it).
 
+To download a file from [releases/](releases/), open it and use the **Download raw file** button. Right-click → *Save link as* on the file list saves the GitHub web page instead, and the core will not start.
+
 ```
 /_Arcade/Millipede.mra
 /_Arcade/Millipede Dux (hack).mra
