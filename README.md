@@ -2,7 +2,7 @@
 
 An FPGA implementation of Atari's **Millipede** arcade game for the [MiSTer FPGA](https://github.com/MiSTer-devel/Main_MiSTer/wiki) platform, built from Atari's schematic package SP-217.
 
-The sequel to Centipede: a Trak-Ball, a garden of mushrooms and a millipede winding down the screen, with bees, earwigs, dragonflies, inchworms, beetles and spiders joining in. DDT bombs take out everything nearby.
+The sequel to Centipede: a Trak-Ball, a garden of mushrooms and a millipede winding down the screen, with bees, earwigs, dragonflies, inchworms, beetles and spiders joining in. DDT bombs take out everything nearby. Requires your own MAME 0.289 ROM (merged) set.
 
 <p align="center">
   <img src="docs/cabinet.png" alt="Millipede arcade cabinet" height="380">
